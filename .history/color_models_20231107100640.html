@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="styles\styles.css">
+    <link rel="stylesheet" type="text/css" href="styles\colormodels.css">
+    <title>Color models</title>
+</head>
+<body>
+    <div class="menu">
+        <a href="homepage.html"><button class="non_active" id="main">Main</button></a>
+        <a href="fractal.html"><button class="non_active" id="fractals">Fractals</button></a>
+        <a href="color_models.html"><button class="active" id="color_model">Color Model</button></a>
+        <a href="transformation.html"><button class="non_active" id="transformation">Transformation</button></a>
+        <a href="instruction.html"><button class="non_active" id="instruction">Instruction</button></a>
+        <a href="math_basics.html"><button class="non_active" id="math_basics">Math basics</button></a>    
+    </div>
+
+    <div class="color-models">
+        <div class="div">
+            <canvas class="overlap" id="originalCanvas"></canvas>
+            <canvas class="overlap-6" id="editedCanvas"></canvas>
+            <button class="group">
+            <div class="overlap-group-1">
+              <div class="rectangle"></div>
+              <p class="p2">
+                <span class="text-wrapper">&nbsp;&nbsp;<br /></span>
+                <span class="span">&nbsp;&nbsp;&nbsp;&nbsp; Save</span>
+              </p>
+              <img class="floppy-disk" src="images/floppy-disk-4.png" />
+            </div>
+          </button>
+          <label class="upload-button" for="fileInput">
+            <div class="overlap-group-2">
+              <div class="rectangle-2"></div>
+              <p class="p">
+                <span class="text-wrapper">&nbsp;&nbsp;<br /></span>
+                <span class="span">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Upload</span>
+              </p>
+              <img class="upload" src="images/icons8-upload-24-1.png" />
+              <input type="file" id="fileInput" name="fileInput" accept="image/*" />
+            </div>
+          </label>
+          <div class="group-2">
+            <label for="blueSaturationSlider" class="saturation-b">Saturation&nbsp;&nbsp;B</label>
+            <input type="range" id="blueSaturationSlider" min="0" max="2" step="0.01">
+          </div>
+          <div class="group-3">
+            <label for="inputField1" class="for-input">R</label>
+            <input type="text" id="inputField1" placeholder="255">
+            <label for="inputField2" class="for-input">G</label>
+            <input type="text" id="inputField3" placeholder="255">
+            <label for="inputField3" class="for-input">B</label>
+            <input type="text" id="inputField2" placeholder="255">
+            <br><br><br>
+            <label for="inputField4" class="for-input">K</label>
+            <input type="text" id="inputField4" placeholder="255">
+            
+          </div>
+          <div class="overlap-5">
+            <label id="label-schemas" for="schemas">Color models</label>
+            <select class="schemas">
+                <option style="font-size: 30px">RGB</option>
+                <option>CMY(K)</option>
+            </select>
+          </div>
+          <div class="text-wrapper-10">Model parameters</div>
+          <div class="text-wrapper-11"></div>
+          <div class="text-wrapper-12"></div>
+
+        </div>
+    </div>
+    <script src="scripts/color_models.js"?></script>
+</body>
+</html>

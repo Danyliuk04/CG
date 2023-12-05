@@ -1,0 +1,21 @@
+<svg width="238" height="65" viewBox="0 0 238 65" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Button Left">
+<g id="Rectangle 57" filter="url(#filter0_d_522_397)">
+<rect x="4" width="230" height="57" fill="#FCFCFC"/>
+<rect x="6.5" y="2.5" width="225" height="52" stroke="#A1E0D5" stroke-width="5"/>
+</g>
+<path id="Arrow Left" d="M52.6692 27.9393C52.0834 28.5251 52.0834 29.4749 52.6692 30.0607L62.2151 39.6066C62.8009 40.1924 63.7506 40.1924 64.3364 39.6066C64.9222 39.0208 64.9222 38.0711 64.3364 37.4853L55.8511 29L64.3364 20.5147C64.9222 19.9289 64.9222 18.9792 64.3364 18.3934C63.7506 17.8076 62.8009 17.8076 62.2151 18.3934L52.6692 27.9393ZM185.306 27.5L53.7298 27.5V30.5L185.306 30.5V27.5Z" fill="#C6AAD9"/>
+</g>
+<defs>
+<filter id="filter0_d_522_397" x="0" y="0" width="238" height="65" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+<feOffset dy="4"/>
+<feGaussianBlur stdDeviation="2"/>
+<feComposite in2="hardAlpha" operator="out"/>
+<feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/>
+<feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_522_397"/>
+<feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_522_397" result="shape"/>
+</filter>
+</defs>
+</svg>

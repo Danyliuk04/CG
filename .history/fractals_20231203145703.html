@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="styles\styles.css">
+    <link rel="stylesheet" type="text/css" href="styles\fractals.css">
+    <title>Fractals</title>
+</head>
+
+<body>
+    <div class="menu">
+        <a href="homepage.html"><button class="non_active" id="main">Main</button></a>
+        <a href="fractals.html"><button class="active" id="fractals">Fractals</button></a>
+        <a href="color_models.html"><button class="non_active" id="color_model">Color Model</button></a>
+        <a href="transformation.html"><button class="non_active" id="transformation">Transformation</button></a>
+        <a href="instruction.html"><button class="non_active" id="instruction">Instruction</button></a>
+        <a href="math_basics.html"><button class="non_active" id="math_basics">Math basics</button></a>
+    </div>
+
+
+    <div class="medium">
+
+        <div style="width: 1428px; height: 1014px; left: 368px; top: 0px; position: fixed; background: #DEEFDE">
+            <div style="width: 1425px; height: 1024px; left: 15px; top: 0px; position: fixed; background: #DEEFDE">
+            </div>
+            <div
+                style="width: 772px; height: 921px; left: 656px; top: 94px; position: fixed; background: #F2FAE6; border: 5px #D8E48B solid">
+            </div>
+            <div style="width: 236px; height: 96px; left: 88px; top: 836px; position: fixed">
+                <div
+                    style="width: 236px; height: 96px; left: 0px; top: 0px; position: fixed; background: rgba(91.94, 187, 170.40, 0.69); box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 40px; border: 5px #39A57E solid">
+                </div>
+                <div
+                    style="width: 236px; height: 96px; left: 0px; top: 0px; position: fixed; color: black; font-size: 35px; font-family: Inter; font-weight: 500; line-height: 30px; word-wrap: break-word">
+                    <br /> Build </div>
+                <img style="width: 46px; height: 46px; left: 201px; top: 25px; position: fixed; transform: rotate(90deg); transform-origin: 0 0"
+                    src="https://via.placeholder.com/46x46" />
+            </div>
+            <div style="width: 497px; height: 61px; left: 85px; top: 716px; position: fixed">
+                <div
+                    style="width: 497px; height: 61px; left: 0px; top: 0px; position: fixed; background: #A1E0D5; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 40px; border: 5px #6AC5A4 solid">
+                </div>
+                <div
+                    style="width: 486px; height: 57px; left: 11px; top: 4px; position: fixed; text-align: center; color: black; font-size: 35px; font-family: Inter; font-weight: 500; line-height: 30px; word-wrap: break-word">
+                    standart configuration</div>
+            </div>
+            <div style="width: 236px; height: 108px; left: 353px; top: 830px; position: fixed">
+                <div
+                    style="width: 229px; height: 96px; left: 0px; top: 6px; position: fixed; background: #87E0D0; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 40px; border: 5px #6AC5A4 solid">
+                </div>
+                <div style="width: 236px; height: 108px; left: 0px; top: 0px; position: fixed"><span
+                        style="color: black; font-size: 35px; font-family: Inter; font-weight: 400; line-height: 35px; word-wrap: break-word">
+                        <br /></span><span
+                        style="color: black; font-size: 35px; font-family: Inter; font-weight: 500; line-height: 35px; word-wrap: break-word">
+                        Save</span></div>
+                <img style="width: 46px; height: 46px; left: 148px; top: 31px; position: fixed"
+                    src="https://via.placeholder.com/46x46" />
+            </div>
+            <div id="scale_input_group">
+                <div
+                    style="width: 92px; height: 38px; left: 132px; top: 0px; position: fixed; background: #FFFAFA; border: 3px black solid">
+                </div>
+                <label for="scale_input" id="scale_input_label"
+                    style="width: 193px; height: 41px; left: 0px; top: 0px; position: fixed; color: black; font-size: 35px; font-family: Inter; font-weight: 500; line-height: 30px; word-wrap: break-word">Scale:</label>
+                <p id="scale_input_pr">%</p>
+                <input id="scale_input" type="number" name="scale_input" placeholder="100">
+            </div>
+            <h2 id="bld_param">Building parameters</h2>
+
+            <div class="fractals_color">
+                <h3 id="fractals_colors">Fractal color:</h3>
+                <button id="red" class="top_color_buttons_row"></button>
+                <button id="purple" class="top_color_buttons_row"></button>
+                <button id="black" class="top_color_buttons_row"></button>
+                <button id="grey" class="top_color_buttons_row"></button>
+                <button id="blue" class="bottom_color_buttons_row"></button>
+                <button id="orange" class="bottom_color_buttons_row"></button>
+                <button id="pink" class="bottom_color_buttons_row"></button>
+                <button id="green" class="bottom_color_buttons_row"></button>
+                <button id="yellow" class="bottom_color_buttons_row"></button>
+
+            </div>
+            <div style="width: 479px; height: 61px; left: 89px; top: 309px; position: fixed">
+                <div
+                    style="width: 255px; height: 37px; left: 224px; top: 2px; position: fixed; background: #FFFAFA; border: 3px black solid">
+                </div>
+                <div
+                    style="width: 255px; height: 37px; left: 224px; top: 0px; position: fixed; text-align: center; color: black; font-size: 30px; font-family: Inter; font-weight: 500; line-height: 40px; word-wrap: break-word">
+                    glacial</div>
+                <div
+                    style="width: 322px; height: 59px; left: 0px; top: 2px; position: fixed; color: black; font-size: 35px; font-family: Inter; font-weight: 500; line-height: 30px; word-wrap: break-word">
+                    Fractal type:</div>
+                <img style="width: 25px; height: 15px; left: 443px; top: 14px; position: fixed"
+                    src="https://via.placeholder.com/25x15" />
+            </div>
+            <div style="width: 292px; left: 89px; top: 384px; position: fixed">
+                <div
+                    style="width: 193px; height: 41px; left: 0px; top: 0px; position: fixed; color: black; font-size: 35px; font-family: Inter; font-weight: 500; line-height: 30px; word-wrap: break-word">
+                    Iterations:</div>
+                <div style="width: 92px; height: 38px; left: 200px; top: 0px; position: fixed">
+                    <div
+                        style="width: 92px; height: 38px; left: 0px; top: 0px; position: fixed; background: #FFFAFA; border: 3px black solid">
+                    </div>
+                    <div
+                        style="width: 76px; height: 28px; left: 8px; top: 2px; position: fixed; text-align: center; color: black; font-size: 30px; font-family: Inter; font-weight: 500; line-height: 30px; word-wrap: break-word">
+                        5</div>
+                </div>
+            </div>
+        </div>
+        <img style="width: 709px; height: 642px; left: 1043px; top: 234px; position: fixed"
+            src="https://via.placeholder.com/709x642" />
+    </div>
+</body>
+
+</html>

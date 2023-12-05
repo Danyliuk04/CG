@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        #canvas {
+            border: 1px solid #000;
+        }
+    </style>
+    <title>Triangle Transformation</title>
+</head>
+<body>
+    <label for="x1">Point 1 (x, y):</label>
+    <input type="number" id="x1" placeholder="x" value="100">
+    <input type="number" id="y1" placeholder="y" value="100"><br>
+
+    <label for="x2">Point 2 (x, y):</label>
+    <input type="number" id="x2" placeholder="x" value="100">
+    <input type="number" id="y2" placeholder="y" value="250"><br>
+
+    <label for="x3">Point 3 (x, y):</label>
+    <input type="number" id="x3" placeholder="x" value="300">
+    <input type="number" id="y3" placeholder="y" value="200"><br>
+
+    <button onclick="updateTriangle()">Update Triangle</button>
+    <button onclick="moveRight()">Move Right</button>
+    <button onclick="moveLeft()">Move Left</button>
+
+    <canvas id="canvas" width="600" height="400"></canvas>
+
+    <script>
+      const canvas = document.getElementById('canvas');
+      const ctx = canvas.getContext('2d');
+
+      let originalTriangle = [
+          { x: 100, y: 300 },
+          { x: 200, y: 100 },
+          { x: 300, y: 300 }
+      ];
+
+      let transformedTriangle = [...originalTriangle];
+      let rotationAngle = 0; // Кут обертання
+
+      function updateTriangle() {
+          originalTriangle = [
+              { x: parseFloat(document.getElementById('x1').value), y: parseFloat(document.getElementById('y1').value) },
+              { x: parseFloat(document.getElementById('x2').value), y: parseFloat(document.getElementById('y2').value) },
+              { x: parseFloat(document.getElementById('x3').value), y: parseFloat(document.getElementById('y3').value) }
+          ];
+
+          drawTriangles();
+      }
+
+      function drawTriangle(triangle, color) {
+          ctx.beginPath();
+          ctx.moveTo(triangle[0].x, triangle[0].y);
+          ctx.lineTo(triangle[1].x, triangle[1].y);
+          ctx.lineTo(triangle[2].x, triangle[2].y);
+          ctx.closePath();
+          ctx.strokeStyle = color;
+          ctx.stroke();
+      }
+
+      function drawTriangles() {
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+          drawTriangle(originalTriangle, 'black');
+          drawTriangle(transformedTriangle, 'red');
+      }
+
+      function multiplyMatrixVector(matrix, vector) {
+          const result = [0, 0];
+          result[0] = matrix[0][0] * vector[0] + matrix[0][1] * vector[1];
+          result[1] = matrix[1][0] * vector[0] + matrix[1][1] * vector[1];
+          return result;
+      }
+
+      function reflectAndScaleTriangle() {
+          const baseMidpoint = [
+              (originalTriangle[0].x + originalTriangle[2].x) / 2,
+              (originalTriangle[0].y + originalTriangle[2].y) / 2
+          ];
+
+          const reflectMatrix = [
+              [1, 0],
+              [0, -1]
+          ];
+
+          const scaleMatrix = [
+              [0.5, 0],
+              [0, 0.5]
+          ];
+
+          transformedTriangle = originalTriangle.map(vertex => {
+              const translatedVertex = [vertex.x - baseMidpoint[0], vertex.y - baseMidpoint[1]];
+              const reflectedAndScaledVertex = multiplyMatrixVector(scaleMatrix, multiplyMatrixVector(reflectMatrix, translatedVertex));
+              return { x: reflectedAndScaledVertex[0] + baseMidpoint[0], y: reflectedAndScaledVertex[1] + baseMidpoint[1] };
+          });
+      }
+
+      function rotateTriangle(angle) {
+          const baseMidpoint = [
+              (originalTriangle[0].x + originalTriangle[2].x) / 2,
+              (originalTriangle[0].y + originalTriangle[2].y) / 2
+          ];
+
+          const rotateMatrix = [
+              [Math.cos(angle), -Math.sin(angle)],
+              [Math.sin(angle), Math.cos(angle)]
+          ];
+
+          transformedTriangle = originalTriangle.map(vertex => {
+              const translatedVertex = [vertex.x - baseMidpoint[0], vertex.y - baseMidpoint[1]];
+              const rotatedVertex = multiplyMatrixVector(rotateMatrix, translatedVertex);
+              return { x: rotatedVertex[0] + baseMidpoint[0], y: rotatedVertex[1] + baseMidpoint[1] };
+          });
+      }
+
+      function moveRight() {
+          rotateTriangle(rotationAngle);
+          transformedTriangle = transformedTriangle.map(vertex => ({ x: vertex.x + 10, y: vertex.y }));
+          drawTriangles();
+      }
+
+      function moveLeft() {
+          rotateTriangle(rotationAngle);
+          transformedTriangle = transformedTriangle.map(vertex => ({ x: vertex.x - 10, y: vertex.y }));
+          drawTriangles();
+      }
+
+      drawTriangles();
+  </script>
+</body>
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        #canvas {
+            border: 1px solid #000;
+        }
+    </style>
+    <title>Triangle Transformation</title>
+</head>
+<body>
+    <label for="x1">Point 1 (x, y):</label>
+    <input type="number" id="x1" placeholder="x" value="100">
+    <input type="number" id="y1" placeholder="y" value="100"><br>
+
+    <label for="x2">Point 2 (x, y):</label>
+    <input type="number" id="x2" placeholder="x" value="100">
+    <input type="number" id="y2" placeholder="y" value="250"><br>
+
+    <label for="x3">Point 3 (x, y):</label>
+    <input type="number" id="x3" placeholder="x" value="300">
+    <input type="number" id="y3" placeholder="y" value="200"><br>
+
+    <button onclick="updateTriangle()">Update Triangle</button>
+
+    <canvas id="canvas" width="600" height="400"></canvas>
+
+    <script>
+      const canvas = document.getElementById('canvas');
+      const ctx = canvas.getContext('2d');
+
+      let triangle = [
+          { x: 100, y: 300 },
+          { x: 200, y: 100 },
+          { x: 300, y: 300 }
+      ];
+
+      function updateTriangle() {
+          triangle = [
+              { x: parseFloat(document.getElementById('x1').value), y: parseFloat(document.getElementById('y1').value) },
+              { x: parseFloat(document.getElementById('x2').value), y: parseFloat(document.getElementById('y2').value) },
+              { x: parseFloat(document.getElementById('x3').value), y: parseFloat(document.getElementById('y3').value) }
+          ];
+
+          reflectAndScaleTriangle();
+          drawTriangle();
+      }
+
+      function drawTriangle() {
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+          ctx.beginPath();
+          ctx.moveTo(triangle[0].x, triangle[0].y);
+          ctx.lineTo(triangle[1].x, triangle[1].y);
+          ctx.lineTo(triangle[2].x, triangle[2].y);
+          ctx.closePath();
+          ctx.stroke();
+      }
+
+      function multiplyMatrixVector(matrix, vector) {
+          const result = [0, 0];
+          result[0] = matrix[0][0] * vector[0] + matrix[0][1] * vector[1];
+          result[1] = matrix[1][0] * vector[0] + matrix[1][1] * vector[1];
+          return result;
+      }
+
+      function reflectAndScaleTriangle() {
+          const baseMidpoint = [
+              (triangle[0].x + triangle[2].x) / 2,
+              (triangle[0].y + triangle[2].y) / 2
+          ];
+
+          const reflectMatrix = [
+              [1, 0],
+              [0, -1]
+          ];
+
+          const scaleMatrix = [
+              [0.5, 0],
+              [0, 0.5]
+          ];
+
+          triangle = triangle.map(vertex => {
+              const translatedVertex = [vertex.x - baseMidpoint[0], vertex.y - baseMidpoint[1]];
+              const reflectedAndScaledVertex = multiplyMatrixVector(scaleMatrix, multiplyMatrixVector(reflectMatrix, translatedVertex));
+              return { x: reflectedAndScaledVertex[0] + baseMidpoint[0], y: reflectedAndScaledVertex[1] + baseMidpoint[1] };
+          });
+      }
+  </script>
+</body>
+</html>

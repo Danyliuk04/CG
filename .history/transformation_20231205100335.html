@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="styles\styles.css">
+    <link rel="stylesheet" type="text/css" href="styles\transformation.css">
+    <title>Transformation</title>
+</head>
+
+<body>
+    <div class="menu">
+        <a href="homepage.html"><button id="main" class="non_active">Main</button></a>
+        <a href="fractal.html"><button class="non_active" id="fractals">Fractals</button></a>
+        <a href="color_models.html"><button class="non_active" id="color_model">Color Model</button></a>
+        <a href="transformation.html"><button class="active" id="transformation">Transformation</button></a>
+        <a href="instruction.html"><button class="non_active" id="instruction">Instruction</button></a>
+        <a href="math_basics.html"><button class="non_active" id="math_basics">Math basics</button></a>
+    </div>
+    <div class="transformation">
+        <div class="div">
+            <canvas id="canvas" class="canvas" width="450" height="450"></canvas>
+            <div class="enter-coordinates">
+                <div class="overlap">
+                    <div class="text-wrapper">A</div>
+                    <div class="text-wrapper-2">B</div>
+                    <div class="text-wrapper-3">C</div>
+                    <div class="overlap-2">
+                        <label for="x1" class="text-wrapper-5">x:</label>                        
+                        <input type="number" id="x1" name="x1" value="-60" class="text-wrapper-4">
+                    </div>
+                    <div class="overlap-3">
+                        <label for="y1" class="text-wrapper-7">y:</label>                        
+                        <input type="text" id="y1" name="y1" value="100" class="text-wrapper-6">
+                    </div>
+                    <div class="overlap-4">
+                        <label for="x2" class="text-wrapper-5">x:</label>                        
+                        <input type="text" id="x2" name="x2" value="120" class="text-wrapper-8">
+                    </div>
+                    <div class="overlap-5">
+                        <label for="y2" class="text-wrapper-7">y:</label>                        
+                        <input type="text" id="y2" name="y2" value="150" class="text-wrapper-9">
+                    </div>
+                    <div class="overlap-group-2">
+                        <label for="x3" class="text-wrapper-5">x:</label>                        
+                        <input type="text" id="x3" name="x3" value="-108" class="text-wrapper-10">
+                    </div>
+                    <div class="overlap-6">
+                        <label for="y3" class="text-wrapper-7">y:</label>                        
+                        <input type="text" id="y3" name="y3" value="150" class="text-wrapper-11">
+                    </div>
+                    <p class="p">Enter the coordinates of the triangle vertices:</p>
+                </div>
+            </div>
+            <button type="button" onclick="moveAndReflectTriangle()" class="overlap-wrapper">
+                <div class="overlap-7">
+                    <img class="triangle" src="images/triangle 5.png" />
+                    <div class="build">&nbsp;&nbsp;&nbsp;&nbsp; Build</div>
+                </div>
+            </button>
+            <div class="overlap-group-wrapper">
+                <div class="overlap-8">
+                    <div class="rectangle-7"></div>
+                    <img class="floppy-disk" src="images/floppy-disk 5.png" />
+                    <p class="save">
+                        <span class="text-wrapper-12">&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                        <span class="text-wrapper-13">Save</span>
+                    </p>
+                </div>
+            </div>
+            <div class="div-wrapper">
+                <div class="overlap-9">
+                    <img class="ellipse" src="images/Ellipse 1.svg" />
+                    <div class="ellipse-2"></div>
+                    <div class="text-wrapper-14">Flip triangle</div>
+                </div>
+            </div>
+            <button class="button-left" onclick="moveReflectedTriangle('left')"><img class="arrow-left" src="images/Button Left.svg" /></button>
+            <button class="button-right" onclick="moveReflectedTriangle('right')"><img class="arrow-right" src="images/Button Right.svg" /></button>
+            <button class="button-build">
+                <div class="overlap-10">
+                    <div class="text-wrapper-15">standart configuration</div>
+                </div>
+            </button>
+        </div>
+    </div>
+    <script src="scripts/transformation.js"></script>
+</body>
+
+</html>

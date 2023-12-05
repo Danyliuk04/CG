@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Декартова координатна площина</title>
+    <style>
+        canvas {
+            border: 1px solid #000;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="canvas" width="500" height="500"></canvas>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Отримуємо полотно та його контекст
+            var canvas = document.getElementById('canvas');
+            var context = canvas.getContext('2d');
+
+            // Функція для малювання декартової координатної площини
+            function drawCartesianPlane() {
+                // Отримуємо центр полотна
+                var centerX = canvas.width / 2;
+                var centerY = canvas.height / 2;
+
+                // Малюємо осі
+                context.beginPath();
+                context.moveTo(0, centerY);
+                context.lineTo(canvas.width, centerY);
+                context.moveTo(centerX, 0);
+                context.lineTo(centerX, canvas.height);
+                context.stroke();
+            }
+
+            // Функція для малювання рівнобедреного трикутника
+            function drawIsoscelesTriangle(x, y, base, height) {
+                context.beginPath();
+                // Визначаємо вершини трикутника
+                var topX = x + base / 2;
+                var topY = y;
+                var leftX = x;
+                var leftY = y + height;
+                var rightX = x + base;
+                var rightY = y + height;
+
+                // Малюємо трикутник
+                context.moveTo(topX, topY);
+                context.lineTo(leftX, leftY);
+                context.lineTo(rightX, rightY);
+                context.closePath();
+                context.stroke();
+            }
+
+            // Викликаємо функції для малювання декартової координатної площини і трикутника
+            drawCartesianPlane();
+            drawIsoscelesTriangle(100, 100, 100, 80);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,67 @@
+.medium {
+    width: 70%;
+    height: 100%;
+    position: relative
+}
+
+
+#bld_param {
+    width: 604px;
+    height: 176px;
+    left: 26px;
+    top: 133px;
+    position: fixed;
+    text-align: center;
+    color: #4D3C77;
+    font-size: 50px;
+    font-family: Inter;
+    font-weight: 400;
+    line-height: 40px;
+    word-wrap: break-word
+}
+
+
+.fractals_color {
+    width: 460px;
+    height: 84px;
+    left: 89px;
+    top: 558px;
+    position: fixed
+}
+
+.fractals_color,
+button {
+    width: 33px;
+    height: 33px;
+    left: 427px;
+    top: 4px;
+    position: fixed;
+}
+
+
+#fractals_colors {
+    width: 261px;
+    height: 41px;
+    left: 0px;
+    top: 0px;
+    color: black;
+    font-size: 35px;
+    font-family: Inter;
+    font-weight: 500;
+    line-height: 30px;
+    word-wrap: break-word
+}
+
+.top_color_buttons_row{
+    top: 4px;
+}
+
+#red {
+    left: 427px;
+    background: #FF0000
+}
+
+#purple {
+    left: 244px;
+    background: #4D3C77;
+}

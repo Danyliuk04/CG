@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    canvas {
+      border: 1px solid #000;
+    }
+  </style>
+  <title>Трикутник</title>
+</head>
+<body>
+  <label for="triangleX1">Трикутник X1:</label>
+  <input type="number" id="triangleX1" value="50">
+  <label for="triangleY1">Трикутник Y1:</label>
+  <input type="number" id="triangleY1" value="300">
+  <br>
+  <label for="triangleX2">Трикутник X2:</label>
+  <input type="number" id="triangleX2" value="150">
+  <label for="triangleY2">Трикутник Y2:</label>
+  <input type="number" id="triangleY2" value="300">
+  <br>
+  <label for="triangleX3">Трикутник X3:</label>
+  <input type="number" id="triangleX3" value="100">
+  <label for="triangleY3">Трикутник Y3:</label>
+  <input type="number" id="triangleY3" value="200">
+  <br>
+  <button onclick="applyTransformations()">Застосувати трансформації</button>
+  <canvas id="myCanvas" width="400" height="400"></canvas>
+
+  <script>
+    const canvas = document.getElementById('myCanvas');
+    const ctx = canvas.getContext('2d');
+
+    function getTriangleCoordinates() {
+      const x1 = parseFloat(document.getElementById('triangleX1').value);
+      const y1 = parseFloat(document.getElementById('triangleY1').value);
+      const x2 = parseFloat(document.getElementById('triangleX2').value);
+      const y2 = parseFloat(document.getElementById('triangleY2').value);
+      const x3 = parseFloat(document.getElementById('triangleX3').value);
+      const y3 = parseFloat(document.getElementById('triangleY3').value);
+
+      return [
+        { x: x1, y: y1 },
+        { x: x2, y: y2 },
+        { x: x3, y: y3 }
+      ];
+    }
+
+    function calculateDistance(point1, point2) {
+      return Math.sqrt((point2.x - point1.x) ** 2 + (point2.y - point1.y) ** 2);
+    }
+
+    function drawTriangle(triangle, color) {
+      ctx.beginPath();
+      ctx.moveTo(triangle[0].x, triangle[0].y);
+      ctx.lineTo(triangle[1].x, triangle[1].y);
+      ctx.lineTo(triangle[2].x, triangle[2].y);
+      ctx.closePath();
+      ctx.fillStyle = color;
+      ctx.fill();
+    }
+
+    function applyAffineTransform(triangle, matrix) {
+      return triangle.map(point => ({
+        x: matrix[0] * point.x + matrix[2] * point.y + matrix[4],
+        y: matrix[1] * point.x + matrix[3] * point.y + matrix[5]
+      }));
+    }
+
+    function applyTransformations() {
+      const initialTriangle = getTriangleCoordinates();
+
+      // Малюємо початковий трикутник
+      drawTriangle(initialTriangle, 'blue');
+
+      // Застосовуємо дзеркальне відображення відносно основи трикутника та зменшення розміру вдвічі
+      const side1 = calculateDistance(initialTriangle[0], initialTriangle[1]);
+      const mirrorAndScaleMatrix = [-1, 0, 0, 0.5, initialTriangle[0].x + side1, 0]; // Дзеркальне відображення відносно основи та зменшення вдвічі
+      const transformedTriangle = applyAffineTransform(initialTriangle, mirrorAndScaleMatrix);
+
+      // Малюємо трансформований трикутник
+      drawTriangle(transformedTriangle, 'red');
+    }
+  </script>
+</body>
+</html>

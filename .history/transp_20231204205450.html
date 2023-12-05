@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    canvas {
+      border: 1px solid #000;
+    }
+  </style>
+  <title>Трикутники з відображенням</title>
+</head>
+<body>
+  <label for="x1">X1:</label>
+  <input type="number" id="x1" value="100">
+  <label for="y1">Y1:</label>
+  <input type="number" id="y1" value="300"><br>
+  
+  <label for="x2">X2:</label>
+  <input type="number" id="x2" value="200">
+  <label for="y2">Y2:</label>
+  <input type="number" id="y2" value="100"><br>
+  
+  <label for="x3">X3:</label>
+  <input type="number" id="x3" value="300">
+  <label for="y3">Y3:</label>
+  <input type="number" id="y3" value="300"><br>
+
+  <button onclick="reflectAndDraw()">Відобразити</button>
+
+  <canvas id="triangleCanvas" width="400" height="400"></canvas>
+
+  <script>
+    const canvas = document.getElementById('triangleCanvas');
+    const ctx = canvas.getContext('2d');
+
+    let triangle = [
+      { x: 100, y: 300 },
+      { x: 200, y: 100 },
+      { x: 300, y: 300 }
+    ];
+
+    function drawTriangle(points, color) {
+      ctx.beginPath();
+      ctx.moveTo(points[0].x, points[0].y);
+      ctx.lineTo(points[1].x, points[1].y);
+      ctx.lineTo(points[2].x, points[2].y);
+      ctx.closePath();
+      ctx.strokeStyle = color;
+      ctx.stroke();
+    }
+
+    function reflectAndDraw() {
+      const x1 = parseInt(document.getElementById('x1').value);
+      const y1 = parseInt(document.getElementById('y1').value);
+      const x2 = parseInt(document.getElementById('x2').value);
+      const y2 = parseInt(document.getElementById('y2').value);
+      const x3 = parseInt(document.getElementById('x3').value);
+      const y3 = parseInt(document.getElementById('y3').value);
+
+      const inputTriangle = [
+        { x: x1, y: y1 },
+        { x: x2, y: y2 },
+        { x: x3, y: y3 }
+      ];
+
+      // Виконати афінне перетворення (дзеркальне відображення та зменшення)
+      const baseVector = { x: x3 - x1, y: y3 - y1 };
+      triangle = inputTriangle.map(point => ({
+        x: x1 + (point.x - x1) / 2 - baseVector.x,
+        y: y1 + (point.y - y1) / 2 - baseVector.y
+      }));
+
+      // Очистити canvas
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      // Малювати основний трикутник
+      drawTriangle(inputTriangle, 'black');
+
+      // Малювати відображений трикутник
+      drawTriangle(triangle, 'red');
+    }
+
+    // Початкове малювання трикутника
+    drawTriangle(triangle, 'black');
+  </script>
+</body>
+</html>

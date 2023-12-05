@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        #canvas {
+            border: 1px solid #000;
+        }
+    </style>
+    <title>Triangle Transformation</title>
+</head>
+<body>
+    <label for="x1">Point 1 (x, y):</label>
+    <input type="number" id="x1" placeholder="x">
+    <input type="number" id="y1" placeholder="y"><br>
+
+    <label for="x2">Point 2 (x, y):</label>
+    <input type="number" id="x2" placeholder="x">
+    <input type="number" id="y2" placeholder="y"><br>
+
+    <label for="x3">Point 3 (x, y):</label>
+    <input type="number" id="x3" placeholder="x">
+    <input type="number" id="y3" placeholder="y"><br>
+
+    <button onclick="updateTriangle()">Update Triangle</button>
+
+    <canvas id="canvas" width="600" height="400"></canvas>
+
+    <script>
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+
+        let triangle = [
+            { x: 100, y: 300 },
+            { x: 200, y: 100 },
+            { x: 300, y: 300 }
+        ];
+
+        function updateTriangle() {
+            triangle = [
+                { x: parseFloat(document.getElementById('x1').value), y: parseFloat(document.getElementById('y1').value) },
+                { x: parseFloat(document.getElementById('x2').value), y: parseFloat(document.getElementById('y2').value) },
+                { x: parseFloat(document.getElementById('x3').value), y: parseFloat(document.getElementById('y3').value) }
+            ];
+
+            drawTriangle(triangle);
+        }
+
+        function drawTriangle(triangle) {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.beginPath();
+            ctx.moveTo(triangle[0].x, triangle[0].y);
+            ctx.lineTo(triangle[1].x, triangle[1].y);
+            ctx.lineTo(triangle[2].x, triangle[2].y);
+            ctx.closePath();
+            ctx.stroke();
+        }
+
+        function reflectTriangle(triangle) {
+            const baseMidpoint = {
+                x: (triangle[0].x + triangle[2].x) / 2,
+                y: (triangle[0].y + triangle[2].y) / 2
+            };
+
+            // Mirror each vertex across the base midpoint
+            return triangle.map(vertex => {
+                let reflectedX = 2 * baseMidpoint.x - vertex.x;
+                let reflectedY = 2 * baseMidpoint.y - vertex.y;
+
+                // Limit coordinates to stay within the visible area
+                reflectedX = Math.min(canvas.width, Math.max(0, reflectedX));
+                reflectedY = Math.min(canvas.height, Math.max(0, reflectedY));
+
+                return { x: reflectedX, y: reflectedY };
+            });
+        }
+
+        function animate() {
+            drawTriangle(triangle);
+
+            // Reflect and reduce size by 2
+            triangle = reflectTriangle(triangle);
+
+            requestAnimationFrame(animate);
+        }
+
+        animate();
+    </script>
+</body>
+</html>

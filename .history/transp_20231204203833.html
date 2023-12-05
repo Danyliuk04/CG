@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    canvas {
+      border: 1px solid #000;
+    }
+  </style>
+  <title>Трикутник з відображенням</title>
+</head>
+<body>
+  <div>
+    <label for="point1X">Point 1 X:</label>
+    <input type="number" id="point1X" value="100">
+
+    <label for="point1Y">Point 1 Y:</label>
+    <input type="number" id="point1Y" value="300">
+  </div>
+
+  <div>
+    <label for="point2X">Point 2 X:</label>
+    <input type="number" id="point2X" value="200">
+
+    <label for="point2Y">Point 2 Y:</label>
+    <input type="number" id="point2Y" value="100">
+  </div>
+
+  <div>
+    <label for="point3X">Point 3 X:</label>
+    <input type="number" id="point3X" value="300">
+
+    <label for="point3Y">Point 3 Y:</label>
+    <input type="number" id="point3Y" value="300">
+  </div>
+
+  <button onclick="mirrorReflect()">Відобразити та зменшити</button>
+
+  <canvas id="triangleCanvas" width="400" height="400"></canvas>
+
+  <script>
+    const canvas = document.getElementById('triangleCanvas');
+    const ctx = canvas.getContext('2d');
+
+    let triangle = [
+      { x: 100, y: 300 },
+      { x: 200, y: 100 },
+      { x: 300, y: 300 }
+    ];
+
+    function drawTriangle() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.beginPath();
+      ctx.moveTo(triangle[0].x, triangle[0].y);
+      ctx.lineTo(triangle[1].x, triangle[1].y);
+      ctx.lineTo(triangle[2].x, triangle[2].y);
+      ctx.closePath();
+      ctx.stroke();
+    }
+
+    function mirrorReflect() {
+      // Дзеркальне відображення відносно прямої через основу
+      const baseVector = [
+        triangle[2].x - triangle[0].x,
+        triangle[2].y - triangle[0].y
+      ];
+
+      // Афінне перетворення для дзеркального відображення та зменшення
+      const transformationMatrix = [
+        [0.5, 0],
+        [0, 0.5]
+      ];
+
+      triangle = triangle.map(point => ({
+        x: point.x - triangle[0].x,
+        y: point.y - triangle[0].y
+      }));
+
+      triangle = triangle.map(point => ({
+        x: transformationMatrix[0][0] * point.x + transformationMatrix[0][1] * point.y,
+        y: transformationMatrix[1][0] * point.x + transformationMatrix[1][1] * point.y
+      }));
+
+      triangle = triangle.map(point => ({
+        x: 2 * point.x + triangle[0].x,
+        y: 2 * point.y + triangle[0].y
+      }));
+
+      drawTriangle();
+    }
+
+    // Отримати значення координат з полів введення
+    function getTriangleCoordinates() {
+      triangle[0].x = parseInt(document.getElementById('point1X').value, 10);
+      triangle[0].y = parseInt(document.getElementById('point1Y').value, 10);
+      triangle[1].x = parseInt(document.getElementById('point2X').value, 10);
+      triangle[1].y = parseInt(document.getElementById('point2Y').value, 10);
+      triangle[2].x = parseInt(document.getElementById('point3X').value, 10);
+      triangle[2].y = parseInt(document.getElementById('point3Y').value, 10);
+
+      drawTriangle();
+    }
+
+    // Викликати функцію при введенні нових координат
+    document.getElementById('point1X').addEventListener('input', getTriangleCoordinates);
+    document.getElementById('point1Y').addEventListener('input', getTriangleCoordinates);
+    document.getElementById('point2X').addEventListener('input', getTriangleCoordinates);
+    document.getElementById('point2Y').addEventListener('input', getTriangleCoordinates);
+    document.getElementById('point3X').addEventListener('input', getTriangleCoordinates);
+    document.getElementById('point3Y').addEventListener('input', getTriangleCoordinates);
+  </script>
+</body>
+</html>

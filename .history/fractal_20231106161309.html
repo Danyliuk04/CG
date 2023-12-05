@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="styles\styles.css">
+    <link rel="stylesheet" type="text/css" href="styles\fractal.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+    <title>Fractal</title>
+</head>
+
+<body>
+    <div class="menu">
+        <a href="homepage.html"><button class="non_active" id="main">Main</button></a>
+        <a href="fractal.html"><button class="active" id="fractals">Fractals</button></a>
+        <a href="color_models.html"><button class="non_active" id="color_model">Color Model</button></a>
+        <a href="transformation.html"><button class="non_active" id="transformation">Transformation</button></a>
+        <a href="instruction.html"><button class="non_active" id="instruction">Instruction</button></a>
+        <a href="math_basics.html"><button class="non_active" id="math_basics">Math basics</button></a>
+    </div>
+
+    <div class="fractals">
+        <div class="overlap">
+            <div class="div">
+                <canvas id="fractalCanvas" class="img"></canvas>
+            </div>
+            <button class="button-build" id="generateButton">
+                <div class="overlap-group">
+                    <div class="build"><br />Build</div>
+                    <img class="triangle" src="images/triangle-4.png" />
+                </div>
+            </button>
+            <button class="overlap-wrapper" id="standardConfigButton">
+                <div class="div-wrapper">
+                    <div class="text-wrapper">Standart configuration</div>
+                </div>
+            </button>
+            <button class="group" id="saveButton">
+                <div class="overlap-2">
+                    <div class="rectangle-2"></div>
+                    <p class="save">
+                        <span class="text-wrapper-2">Save</span>
+                    </p>
+                    <img class="floppy-disk" src="images/floppy-disk-4.png" />
+                </div>
+            </button>
+            <div class="group-2">
+                <div class="overlap-3">
+                    <div class="rectangle-3"></div>
+                    <div class="text-wrapper-3">Scale:</div>
+                    <input type="number" placeholder="100" name="scale_input" class="text-wrapper-4" id="scale"></input>
+                </div>
+                <div class="text-wrapper-5">%</div>
+            </div>
+            <img class="building-parameters" src="images/building-parameters.png" />
+            <div class="fractal-colors">
+                <button class="rectangle-4">
+                </button>
+                <div class="overlap-4">
+                    <div class="rectangle-5"></div>
+                    <div class="text-wrapper-6">Fractal color:</div>
+                </div>
+                <button class="rectangle-6"></button>
+                <button class="rectangle-7"></button>
+                <button class="rectangle-8"></button>
+                <button class="rectangle-9"></button>
+                <button class="rectangle-10"></button>
+                <button class="rectangle-11"></button>
+                <button class="rectangle-12"></button>
+            </div>
+            <div class="fractal-type-choice">
+                <div class="overlap-5">
+                    <div class="rectangle-13"></div>
+                    <label for="select-fractal-type" class="text-wrapper-8">Fractal type:</label>
+                    <select name="fractal-type" id="select-fractal-type" class="text-wrapper-7">
+                        <option value="algebraic">Algebraic</option>
+                        <option value="glacial">Glacial</option>
+                    </select>
+                    <!--<div class="rectangle-13"></div>
+                    <div class="text-wrapper-7">glacial</div>
+                    <div class="text-wrapper-8">Fractal type:</div>
+                    <img class="image" src="images/image-3.png" /> -->
+                </div>
+            </div>
+            <div class="group-3">
+                <div class="text-wrapper-3">Iterations:</div>
+                <div class="overlap-group-wrapper">
+                    <div class="overlap-group-2">
+                        <input type="number" name="Iteration" placeholder="5" class="text-wrapper-9" id="iterations"></input>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    <script src="scripts/fractals.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Рівнобедрений трикутник</title>
+  <style>
+    canvas {
+      border: 1px solid #000;
+    }
+  </style>
+</head>
+<body>
+  <label for="x1">X1:</label>
+  <input type="number" id="x1" value="50">
+  <label for="y1">Y1:</label>
+  <input type="number" id="y1" value="50"><br>
+
+  <label for="x2">X2:</label>
+  <input type="number" id="x2" value="150">
+  <label for="y2">Y2:</label>
+  <input type="number" id="y2" value="50"><br>
+
+  <label for="x3">X3:</label>
+  <input type="number" id="x3" value="100">
+  <label for="y3">Y3:</label>
+  <input type="number" id="y3" value="150"><br>
+
+  <button onclick="drawTriangle()">Намалювати трикутник</button>
+
+  <canvas id="triangleCanvas" width="200" height="200"></canvas>
+
+  <script>
+    function distance(x1, y1, x2, y2) {
+      return Math.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2);
+    }
+
+    function drawTriangle() {
+      const canvas = document.getElementById('triangleCanvas');
+      const ctx = canvas.getContext('2d');
+
+      const x1 = parseFloat(document.getElementById('x1').value);
+      const y1 = parseFloat(document.getElementById('y1').value);
+
+      const x2 = parseFloat(document.getElementById('x2').value);
+      const y2 = parseFloat(document.getElementById('y2').value);
+
+      const x3 = parseFloat(document.getElementById('x3').value);
+      const y3 = parseFloat(document.getElementById('y3').value);
+
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      // Знаходимо довжини сторін трикутника
+      const side1 = distance(x1, y1, x2, y2);
+      const side2 = distance(x2, y2, x3, y3);
+      const side3 = distance(x1, y1, x3, y3);
+
+      // Знаходимо дві найкоротші сторони
+      let baseX1, baseY1, baseX2, baseY2;
+
+      if (side1 <= side2 && side1 <= side3) {
+        baseX1 = x1;
+        baseY1 = y1;
+        baseX2 = x2;
+        baseY2 = y2;
+      } else if (side2 <= side1 && side2 <= side3) {
+        baseX1 = x2;
+        baseY1 = y2;
+        baseX2 = x3;
+        baseY2 = y3;
+      } else {
+        baseX1 = x1;
+        baseY1 = y1;
+        baseX2 = x3;
+        baseY2 = y3;
+      }
+
+      // Знаходимо середину бази (сторони)
+      const baseMidX = (baseX1 + baseX2) / 2;
+      const baseMidY = (baseY1 + baseY2) / 2;
+
+      // Знаходимо вершину рівнобедреного трикутника
+      const apexX = 2 * baseMidX - x3;
+      const apexY = 2 * baseMidY - y3;
+
+      // Малюємо трикутник
+      ctx.beginPath();
+      ctx.moveTo(x1, y1);
+      ctx.lineTo(x2, y2);
+      ctx.lineTo(x3, y3);
+      ctx.closePath();
+      ctx.stroke();
+
+      // Малюємо вершину рівнобедреного трикутника
+      ctx.beginPath();
+      ctx.arc(apexX, apexY, 3, 0, 2 * Math.PI);
+      ctx.fillStyle = 'red';
+      ctx.fill();
+      ctx.stroke();
+    }
+  </script>
+</body>
+</html>

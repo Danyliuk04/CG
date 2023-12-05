@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Декартова координатна площина</title>
+    <style>
+        canvas {
+            border: 1px solid #000;
+        }
+    </style>
+</head>
+<body>
+    <form id="coordinatesForm">
+        <label for="x1">X1:</label>
+        <input type="number" id="x1" name="x1" value="100">
+
+        <label for="y1">Y1:</label>
+        <input type="number" id="y1" name="y1" value="100">
+
+        <label for="x2">X2:</label>
+        <input type="number" id="x2" name="x2" value="200">
+
+        <label for="y2">Y2:</label>
+        <input type="number" id="y2" name="y2" value="100">
+
+        <label for="x3">X3:</label>
+        <input type="number" id="x3" name="x3" value="150">
+
+        <label for="y3">Y3:</label>
+        <input type="number" id="y3" name="y3" value="180">
+
+        <button type="button" onclick="moveAndReflectTriangle()">Рух і дзеркальне відображення трикутника</button>
+        <button type="button" onclick="moveReflectedTriangle('right')">Вправо</button>
+        <button type="button" onclick="moveReflectedTriangle('left')">Вліво</button>
+    </form>
+
+    <canvas id="canvas" width="500" height="500"></canvas>
+
+    <script>
+        var originalTriangle;
+        var reflectedTriangle;
+
+        document.addEventListener('DOMContentLoaded', function() {
+            var canvas = document.getElementById('canvas');
+            var context = canvas.getContext('2d');
+
+            function drawCartesianPlane() {
+                var centerX = canvas.width / 2;
+                var centerY = canvas.height / 2;
+
+                context.beginPath();
+                context.moveTo(0, centerY);
+                context.lineTo(canvas.width, centerY);
+                context.moveTo(centerX, 0);
+                context.lineTo(centerX, canvas.height);
+                context.stroke();
+            }
+
+            function drawIsoscelesTriangle(x1, y1, x2, y2, x3, y3) {
+                context.beginPath();
+                context.moveTo(x1, y1);
+                context.lineTo(x2, y2);
+                context.lineTo(x3, y3);
+                context.closePath();
+                context.stroke();
+            }
+
+            moveAndReflectTriangle = function() {
+                var x1 = parseFloat(document.getElementById('x1').value);
+                var y1 = parseFloat(document.getElementById('y1').value);
+                var x2 = parseFloat(document.getElementById('x2').value);
+                var y2 = parseFloat(document.getElementById('y2').value);
+                var x3 = parseFloat(document.getElementById('x3').value);
+                var y3 = parseFloat(document.getElementById('y3').value);
+
+                originalTriangle = { x1, y1, x2, y2, x3, y3 };
+
+                var centerX = (x1 + x2 + x3) / 3;
+                var centerY = (y1 + y2 + y3) / 3;
+
+                var newX1 = x1 + 50;
+                var newY1 = y1 + 50;
+                var newX2 = x2 + 50;
+                var newY2 = y2 + 50;
+                var newX3 = x3 + 50;
+                var newY3 = y3 + 50;
+
+                context.clearRect(0, 0, canvas.width, canvas.height);
+                drawCartesianPlane();
+                drawIsoscelesTriangle(X1, Y1, X2, Y2, X3, Y3);
+
+                var scale = 0.5;
+                var X1 = 2 * centerX - scale * originalTriangle.x1;
+                var Y1 = 2 * centerY - scale * originalTriangle.y1;
+                var X2 = 2 * centerX - scale * originalTriangle.x2;
+                var Y2 = 2 * centerY - scale * originalTriangle.y2;
+                var X3 = 2 * centerX - scale * originalTriangle.x3;
+                var Y3 = 2 * centerY - scale * originalTriangle.y3;
+
+                reflectedTriangle = {X1, Y1,  X2, Y2, X3, Y3};
+
+                drawIsoscelesTriangle(reflectedTriangle.X1, reflectedTriangle.Y1, reflectedTriangle.X2, reflectedTriangle.Y2, reflectedTriangle.X3, reflectedTriangle.Y3);
+            };
+
+            moveReflectedTriangle = function(direction) {
+                var deltaX = (direction === 'right') ? 10 : -10;
+
+                var centerX = (originalTriangle.x1 + originalTriangle.x2 + originalTriangle.x3) / 3;
+                var centerY = (originalTriangle.y1 + originalTriangle.y2 + originalTriangle.y3) / 3;
+                drawIsoscelesTriangle(originalTriangle.x1, originalTriangle.y1, originalTriangle.x2, originalTriangle.y2, originalTriangle.x3, originalTriangle.y3);
+
+                var scale = 0.5;
+
+                reflectedTriangle.x1 -= deltaX;
+                reflectedTriangle.x2 -= deltaX;
+                reflectedTriangle.x3 -= deltaX;
+
+                var reflectedX1 = 2 * centerX - scale * originalTriangle.x1;
+                var reflectedY1 = 2 * centerY - scale * originalTriangle.y1;
+                var reflectedX2 = 2 * centerX - scale * originalTriangle.x2;
+                var reflectedY2 = 2 * centerY - scale * originalTriangle.y2;
+                var reflectedX3 = 2 * centerX - scale * originalTriangle.x3;
+                var reflectedY3 = 2 * centerY - scale * originalTriangle.y3;
+
+                context.clearRect(0, 0, canvas.width, canvas.height);
+                drawCartesianPlane();
+                drawIsoscelesTriangle(reflectedX1, reflectedY1, reflectedX2, reflectedY2, reflectedX3, reflectedY3);
+            };
+
+            drawCartesianPlane();
+        });
+    </script>
+</body>
+</html>

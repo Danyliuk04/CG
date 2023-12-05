@@ -1,0 +1,82 @@
+.math-basics {
+    background-color: #deefde;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+    }
+    .math-basics .div {
+    background-color: #deefde;
+    width: 70%;
+    height: 700px;
+    margin-left: 30%;
+    position: relative;
+    }
+    .math-basics .overlap {
+    position: fixed;
+    width: 70%;
+    height: 963px;
+    top: 15px;
+    left: 30%;
+    }
+    .math-basics .overlap-group {
+    position: fixed;
+    width: 1446px;
+    height: 963px;
+    top: 0;
+    left: 31%;
+    }
+    .math-basics .self-similarity {
+    position: fixed;
+    width: 65%;
+    height: 80%;
+    top: 164px;
+    left: 32%;
+    font-family: "Inter-Regular", Helvetica;
+    font-weight: 400;
+    color: transparent;
+    font-size: 22px;
+    letter-spacing: 0;
+    line-height: 31px;
+    }
+    .math-basics .text-wrapper {
+    color: #69c4a3;
+    }
+    .math-basics .span {
+    font-family: "Inter-ExtraBold", Helvetica;
+    font-weight: 800;
+    color: #1b8177;
+    }
+    .math-basics .a-fractal-is-a {
+    position: fixed;
+    width: 53%;
+    height: 283px;
+    top: 0;
+    left: 31%;
+    font-family: "Inter-Bold", Helvetica;
+    font-weight: 700;
+    color: transparent;
+    font-size: 33px;
+    text-align: center;
+    letter-spacing: 0;
+    line-height: 33px;
+    }
+    .math-basics .text-wrapper-2 {
+    color: #1b8177;
+    }
+    .math-basics .text-wrapper-3 {
+    color: #69c4a3;
+    font-size: 40px;
+    }
+    .math-basics .text-wrapper-4 {
+    color: #4dc3ae;
+    font-size: 40px;
+    }
+    .math-basics .vector {
+    position: fixed;
+    width: 85px;
+    height: 85px;
+    top: 33px;
+    left: 85%;
+    }
+    

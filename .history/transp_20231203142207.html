@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Декартова координатна площина</title>
+    <style>
+        canvas {
+            border: 1px solid #000;
+        }
+    </style>
+</head>
+<body>
+    <form id="coordinatesForm">
+        <label for="x1">X1:</label>
+        <input type="number" id="x1" name="x1" value="100">
+
+        <label for="y1">Y1:</label>
+        <input type="number" id="y1" name="y1" value="100">
+
+        <label for="x2">X2:</label>
+        <input type="number" id="x2" name="x2" value="200">
+
+        <label for="y2">Y2:</label>
+        <input type="number" id="y2" name="y2" value="100">
+
+        <label for="x3">X3:</label>
+        <input type="number" id="x3" name="x3" value="150">
+
+        <label for="y3">Y3:</label>
+        <input type="number" id="y3" name="y3" value="180">
+
+        <button type="button" onclick="moveAndReflectTriangle()">Рух і дзеркальне відображення трикутника</button>
+    </form>
+
+    <canvas id="canvas" width="500" height="500"></canvas>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var canvas = document.getElementById('canvas');
+            var context = canvas.getContext('2d');
+
+            function drawCartesianPlane() {
+                var centerX = canvas.width / 2;
+                var centerY = canvas.height / 2;
+
+                context.beginPath();
+                context.moveTo(0, centerY);
+                context.lineTo(canvas.width, centerY);
+                context.moveTo(centerX, 0);
+                context.lineTo(centerX, canvas.height);
+                context.stroke();
+            }
+
+            function drawIsoscelesTriangle(x1, y1, x2, y2, x3, y3) {
+                context.beginPath();
+                context.moveTo(x1, y1);
+                context.lineTo(x2, y2);
+                context.lineTo(x3, y3);
+                context.closePath();
+                context.stroke();
+            }
+
+            function moveAndReflectTriangle() {
+                var x1 = parseFloat(document.getElementById('x1').value);
+                var y1 = parseFloat(document.getElementById('y1').value);
+                var x2 = parseFloat(document.getElementById('x2').value);
+                var y2 = parseFloat(document.getElementById('y2').value);
+                var x3 = parseFloat(document.getElementById('x3').value);
+                var y3 = parseFloat(document.getElementById('y3').value);
+
+                var centerX = (x1 + x2 + x3) / 3; // Знаходимо центр трикутника
+                var centerY = (y1 + y2 + y3) / 3;
+
+                // Визначаємо нові координати для руху трикутника
+                var newX1 = x1 + 50; // наприклад, рухаємо на 50 вправо
+                var newY1 = y1 + 50; // наприклад, рухаємо на 50 вниз
+                var newX2 = x2 + 50;
+                var newY2 = y2 + 50;
+                var newX3 = x3 + 50;
+                var newY3 = y3 + 50;
+
+                // Очищаємо полотно перед малюванням нового трикутника
+                context.clearRect(0, 0, canvas.width, canvas.height);
+
+                // Малюємо декартову координатну площину
+                drawCartesianPlane();
+
+                // Малюємо трикутник з новими координатами
+                drawIsoscelesTriangle(newX1, newY1, newX2, newY2, newX3, newY3);
+
+                // Визначаємо нові координати для дзеркального відображення
+                var reflectedX1 = 2 * centerX - newX1;
+                var reflectedY1 = 2 * centerY - newY1;
+                var reflectedX2 = 2 * centerX - newX2;
+                var reflectedY2 = 2 * centerY - newY2;
+                var reflectedX3 = 2 * centerX - newX3;
+                var reflectedY3 = 2 * centerY - newY3;
+
+                // Малюємо дзеркально відображений трикутник
+                drawIsoscelesTriangle(reflectedX1, reflectedY1, reflectedX2, reflectedY2, reflectedX3, reflectedY3);
+            }
+
+            // Малюємо декартову координатну площину за замовчуванням
+            drawCartesianPlane();
+        });
+    </script>
+</body>
+</html>

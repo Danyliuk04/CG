@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="styles\styles.css">
+    <link rel="stylesheet" type="text/css" href="styles\colormodels.css">
+    <title>Color models</title>
+</head>
+
+<body>
+    <div class="menu">
+        <a href="homepage.html"><button class="non_active" id="main">Main</button></a>
+        <a href="fractal.html"><button class="non_active" id="fractals">Fractals</button></a>
+        <a href="color_models.html"><button class="active" id="color_model">Color Model</button></a>
+        <a href="transformation.html"><button class="non_active" id="transformation">Transformation</button></a>
+        <a href="instruction.html"><button class="non_active" id="instruction">Instruction</button></a>
+        <a href="math_basics.html"><button class="non_active" id="math_basics">Math basics</button></a>
+    </div>
+
+    <div class="color-models">
+        <div class="div">
+            <canvas class="overlap" id="originalCanvas" width="450px" height="300px"></canvas>
+            <canvas class="overlap-6" id="editedCanvas" width="450px" height="300px"></canvas>
+            <button class="group">
+                <div class="overlap-group-1">
+                    <div class="rectangle"></div>
+                    <p class="p2">
+                        <span class="text-wrapper">&nbsp;&nbsp;<br /></span>
+                        <span class="span">&nbsp;&nbsp;&nbsp;&nbsp; Save</span>
+                    </p>
+                    <img class="floppy-disk" src="images/floppy-disk-4.png" />
+                </div>
+            </button>
+            <label class="upload-button" for="fileInput">
+                <div class="overlap-group-2">
+                    <div class="rectangle-2"></div>
+                    <p class="p">
+                        <span class="text-wrapper">&nbsp;&nbsp;<br /></span>
+                        <span class="span">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Upload</span>
+                    </p>
+                    <img class="upload" src="images/icons8-upload-24-1.png" />
+                    <input type="file" id="fileInput" name="fileInput" accept="image/*" />
+                </div>
+            </label>
+            <button class="overlap-wrapper" id="standardConfigButton">
+                <div class="div-wrapper-3">
+                    <div class="text-wrapper">Update Image</div>
+                </div>
+            </button>
+            <div class="group-2">
+                <label for="blueSaturationSlider" class="saturation-b">Saturation&nbsp;&nbsp;B</label>
+                <input type="range" id="blueSaturationSlider" min="0" max="3" step="0.01" value="1">
+            </div>
+            <div class="group-3">
+                <div id="rgbInputs" style="display: block;">
+                    <label for="redInput" class="for-input">R</label>
+                    <input type="number" id="redInput" min="0" max="255" value="0">
+                    <label for="greenInput" class="for-input">G</label>
+                    <input type="number" id="greenInput" min="0" max="255" value="0">
+                    <label for="blueInput" class="for-input">B</label>
+                    <input type="number" id="blueInput" min="0" max="255" value="0">
+                </div>
+                <div id="cmykInputs" style="display: none;">
+                    <label for="cyanInput" class="for-input">C</label>
+                    <input type="number" id="cyanInput" min="0" max="100" value="0">
+                    <label for="magentaInput" class="for-input">M</label>
+                    <input type="number" id="magentaInput" min="0" max="100" value="0">
+                    <label for="yellowInput" class="for-input">Y</label>
+                    <input type="number" id="yellowInput" min="0" max="100" value="0">
+                    <br><br><br>
+                    <label for="blackInput" class="for-input">K</label>
+                    <input type="number" id="blackInput" min="0" max="100" value="0">
+                </div>
+            </div>
+            <div class="overlap-5">
+                <label id="label-schemas" for="colorScheme">Color models</label>
+                <select class="schemas" name="colorScheme" id="colorScheme">
+                    <option value="rgb" style="font-size: 30px" selected>RGB</option>
+                    <option value="cmyk">CMY(K)</option>
+                </select>
+            </div>
+            <div class="text-wrapper-10">Model parameters</div>
+            <div class="text-wrapper-11" id="colorInfo"></div>
+            <div class="text-wrapper-12"></div>
+
+        </div>
+    </div>
+    <script src="scripts/colors.js"></script>
+</body>
+
+</html>

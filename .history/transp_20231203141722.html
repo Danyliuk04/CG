@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Декартова координатна площина</title>
+    <style>
+        canvas {
+            border: 1px solid #000;
+        }
+    </style>
+</head>
+<body>
+    <form id="coordinatesForm">
+        <label for="x1">X1:</label>
+        <input type="number" id="x1" name="x1" value="100">
+
+        <label for="y1">Y1:</label>
+        <input type="number" id="y1" name="y1" value="100">
+
+        <label for="x2">X2:</label>
+        <input type="number" id="x2" name="x2" value="200">
+
+        <label for="y2">Y2:</label>
+        <input type="number" id="y2" name="y2" value="100">
+
+        <label for="x3">X3:</label>
+        <input type="number" id="x3" name="x3" value="150">
+
+        <label for="y3">Y3:</label>
+        <input type="number" id="y3" name="y3" value="180">
+
+        <button type="button" onclick="drawTriangle()">Намалювати трикутник</button>
+    </form>
+
+    <canvas id="canvas" width="500" height="500"></canvas>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var canvas = document.getElementById('canvas');
+            var context = canvas.getContext('2d');
+
+            function drawCartesianPlane() {
+                var centerX = canvas.width / 2;
+                var centerY = canvas.height / 2;
+
+                context.beginPath();
+                context.moveTo(0, centerY);
+                context.lineTo(canvas.width, centerY);
+                context.moveTo(centerX, 0);
+                context.lineTo(centerX, canvas.height);
+                context.stroke();
+            }
+
+            function drawIsoscelesTriangle(x1, y1, x2, y2, x3, y3) {
+                context.beginPath();
+                context.moveTo(x1, y1);
+                context.lineTo(x2, y2);
+                context.lineTo(x3, y3);
+                context.closePath();
+                context.stroke();
+            }
+
+            function drawTriangle() {
+                // Отримати значення з полів форми
+                var x1 = parseFloat(document.getElementById('x1').value);
+                var y1 = parseFloat(document.getElementById('y1').value);
+                var x2 = parseFloat(document.getElementById('x2').value);
+                var y2 = parseFloat(document.getElementById('y2').value);
+                var x3 = parseFloat(document.getElementById('x3').value);
+                var y3 = parseFloat(document.getElementById('y3').value);
+
+                // Очистити полотно перед малюванням нового трикутника
+                context.clearRect(0, 0, canvas.width, canvas.height);
+
+                // Малювати декартову координатну площину
+                drawCartesianPlane();
+
+                // Малювати трикутник з новими координатами
+                drawIsoscelesTriangle(x1, y1, x2, y2, x3, y3);
+            }
+
+            // Малювати декартову координатну площину за замовчуванням
+            drawCartesianPlane();
+        });
+    </script>
+</body>
+</html>
